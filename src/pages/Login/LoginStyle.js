@@ -1,16 +1,6 @@
 import styled from 'styled-components/native';
 import {colors} from '../../components/colors';
 
-export const Keyboard = styled.KeyboardAvoidingView`
-  flex: 1;
-`;
-
-export const Container = styled.SafeAreaView`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const LogoArea = styled.View`
   align-items: center;
   margin-bottom: 35px;

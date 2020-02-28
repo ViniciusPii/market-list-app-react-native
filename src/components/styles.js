@@ -2,6 +2,16 @@ import styled from 'styled-components/native';
 import LinearGradient from 'react-native-linear-gradient';
 import {colors} from './colors';
 
+export const Keyboard = styled.KeyboardAvoidingView`
+  flex: 1;
+`;
+
+export const Container = styled.SafeAreaView`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const Background = styled(LinearGradient).attrs({
   colors: [colors.pink, colors.cianBlue],
 })`

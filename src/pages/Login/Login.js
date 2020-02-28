@@ -2,6 +2,8 @@ import React from 'react';
 import {SafeAreaView, Platform} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
+  Container,
+  Keyboard,
   Background,
   Input,
   Button,
@@ -11,14 +13,7 @@ import {
   FooterText,
   FooterButtonText,
 } from '../../components/styles';
-import {
-  Container,
-  Keyboard,
-  LogoText,
-  Text,
-  TextBold,
-  LogoArea,
-} from './LoginStyle';
+import {LogoText, Text, TextBold, LogoArea} from './LoginStyle';
 import {colors} from '../../components/colors';
 
 const Login = ({navigation}) => {
@@ -33,7 +28,7 @@ const Login = ({navigation}) => {
               <TextBold>list</TextBold>
             </LogoText>
           </LogoArea>
-          <Input placeholder="Nome" autoCorrect={false} autoFocus={true} />
+          <Input placeholder="Nome" autoCorrect={false} />
           <Input
             placeholder="Senha"
             autoCorrect={false}
