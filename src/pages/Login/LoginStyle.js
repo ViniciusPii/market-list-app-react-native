@@ -3,7 +3,7 @@ import {colors} from '../../components/colors';
 
 export const LogoArea = styled.View`
   align-items: center;
-  margin-bottom: 35px;
+  margin-bottom: 20px;
 `;
 
 export const LogoText = styled.View`
