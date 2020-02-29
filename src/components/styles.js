@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import LinearGradient from 'react-native-linear-gradient';
 import {colors} from './colors';
 
-export const Keyboard = styled.KeyboardAvoidingView`
+export const KeyboardAvoid = styled.KeyboardAvoidingView`
   flex: 1;
 `;
 

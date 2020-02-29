@@ -1,12 +1,13 @@
-import React, {useState} from 'react';
-import {SafeAreaView, Platform} from 'react-native';
+/* eslint-disable no-alert */
+import React, {useState, lazy} from 'react';
+import {SafeAreaView, Platform, ActivityIndicator} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import firebase from '../../config/firebase';
 
 import {
   Container,
-  Keyboard,
+  KeyboardAvoid,
   Background,
   Input,
   Button,
@@ -22,22 +23,27 @@ import {colors} from '../../components/colors';
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const logar = () => {
+    setLoading(true);
+
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(res => {
         alert('Logou');
+        setLoading(false);
       })
       .catch(erro => {
         alert('Ah não! Usuário ou Senha incorretos');
+        setLoading(false);
       });
   };
 
   return (
     <Background>
-      <Keyboard behavior={Platform.OS === 'ios' ? 'padding' : ''}>
+      <KeyboardAvoid behavior={Platform.OS === 'ios' ? 'padding' : ''}>
         <Container>
           <LogoArea>
             <Icon name="cart-outline" size={70} color={colors.white} />
@@ -52,6 +58,7 @@ const Login = ({navigation}) => {
             autoCapitalize={'none'}
             value={email}
             onChangeText={text => setEmail(text)}
+            keyboardType={'email-address'}
           />
           <Input
             placeholder="Senha"
@@ -61,7 +68,11 @@ const Login = ({navigation}) => {
             onChangeText={text => setPassword(text)}
           />
           <Button onPress={logar}>
-            <ButtonText>Login</ButtonText>
+            {loading ? (
+              <ActivityIndicator color={colors.white} size={'large'} />
+            ) : (
+              <ButtonText>Login</ButtonText>
+            )}
           </Button>
           <FooterArea>
             <FooterText>Ainda não possui uma conta? </FooterText>
@@ -70,7 +81,7 @@ const Login = ({navigation}) => {
             </FooterButton>
           </FooterArea>
         </Container>
-      </Keyboard>
+      </KeyboardAvoid>
     </Background>
   );
 };
