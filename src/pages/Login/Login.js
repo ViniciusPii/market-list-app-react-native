@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView, Platform} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import firebase from '../../config/firebase';
+
 import {
   Container,
   Keyboard,
@@ -17,6 +20,21 @@ import {LogoText, Text, TextBold, LogoArea} from './LoginStyle';
 import {colors} from '../../components/colors';
 
 const Login = ({navigation}) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const logar = () => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(res => {
+        alert('Logou');
+      })
+      .catch(erro => {
+        alert('Ah não! Usuário ou Senha incorretos');
+      });
+  };
+
   return (
     <Background>
       <Keyboard behavior={Platform.OS === 'ios' ? 'padding' : ''}>
@@ -28,13 +46,21 @@ const Login = ({navigation}) => {
               <TextBold>list</TextBold>
             </LogoText>
           </LogoArea>
-          <Input placeholder="Nome" autoCorrect={false} />
+          <Input
+            placeholder="Email"
+            autoCorrect={false}
+            autoCapitalize={'none'}
+            value={email}
+            onChangeText={text => setEmail(text)}
+          />
           <Input
             placeholder="Senha"
             autoCorrect={false}
             secureTextEntry={true}
+            value={password}
+            onChangeText={text => setPassword(text)}
           />
-          <Button>
+          <Button onPress={logar}>
             <ButtonText>Login</ButtonText>
           </Button>
           <FooterArea>
