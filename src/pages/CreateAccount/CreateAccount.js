@@ -1,8 +1,8 @@
 /* eslint-disable no-alert */
 import React, {useState} from 'react';
-import {Text, Platform, Keyboard, ActivityIndicator} from 'react-native';
+import {Platform, Keyboard, ActivityIndicator} from 'react-native';
 
-import firebase from '../../config/firebase';
+import firebase from '../../services/firebase';
 
 import {
   KeyboardAvoid,
@@ -15,8 +15,9 @@ import {
   FooterArea,
   FooterButton,
   FooterButtonText,
+  Title,
+  TitleArea,
 } from '../../components/styles';
-import {Title, TitleArea} from './CreateAccountStyle';
 import {colors} from '../../components/colors';
 
 const CreateAccount = ({navigation}) => {

@@ -13,7 +13,7 @@ const NewItem = () => {
 NewItem.navigationOptions = {
   tabBarLabel: 'Dashboard',
   tabBarIcon: ({tintColor}) => (
-    <Icon name="plus-circle" size={30} color={tintColor} />
+    <Icon name="plus-circle" size={35} color={tintColor} />
   ),
 };
 

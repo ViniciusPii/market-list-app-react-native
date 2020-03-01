@@ -12,6 +12,14 @@ export const Container = styled.SafeAreaView`
   align-items: center;
 `;
 
+export const TitleArea = styled.View``;
+
+export const Title = styled.Text`
+  color: ${colors.white};
+  font-size: 25px;
+  margin-bottom: 20px;
+`;
+
 export const Background = styled(LinearGradient).attrs({
   colors: [colors.pink, colors.cianBlue],
 })`

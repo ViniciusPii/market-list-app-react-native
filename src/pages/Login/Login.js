@@ -3,7 +3,7 @@ import React, {useState, lazy} from 'react';
 import {SafeAreaView, Platform, ActivityIndicator} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import firebase from '../../config/firebase';
+import firebase from '../../services/firebase';
 
 import {
   Container,

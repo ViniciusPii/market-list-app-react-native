@@ -14,12 +14,11 @@ const Routes = createAppContainer(
         tabBarOptions: {
           showLabel: false,
           activeTintColor: '#fff',
-          inactiveTintColor: '#FFB2DA',
+          inactiveTintColor: '#A7D2FF',
           style: {
-            backgroundColor: '#FF89C6',
+            backgroundColor: '#6FB5FF',
             height: 60,
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
+            borderTopColor: 'transparent',
           },
         },
       },
