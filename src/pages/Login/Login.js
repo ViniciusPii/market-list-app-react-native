@@ -32,8 +32,7 @@ const Login = ({navigation}) => {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(res => {
-        alert('Logou');
-        setLoading(false);
+        navigation.navigate('Home');
       })
       .catch(erro => {
         alert('Ah não! Usuário ou Senha incorretos');
