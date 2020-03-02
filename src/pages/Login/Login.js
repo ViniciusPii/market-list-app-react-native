@@ -1,21 +1,21 @@
 /* eslint-disable no-alert */
-import React, {useState, lazy} from 'react';
-import {SafeAreaView, Platform, ActivityIndicator} from 'react-native';
+import React, {useState} from 'react';
+import {Platform, ActivityIndicator} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import firebase from '../../services/firebase';
 
 import {
-  Container,
-  KeyboardAvoid,
   Background,
-  Input,
   Button,
   ButtonText,
+  Container,
   FooterArea,
   FooterButton,
-  FooterText,
   FooterButtonText,
+  FooterText,
+  Input,
+  KeyboardAvoid,
 } from '../../components/styles';
 import {LogoText, Text, TextBold, LogoArea} from './LoginStyle';
 import {colors} from '../../components/colors';
@@ -52,19 +52,19 @@ const Login = ({navigation}) => {
             </LogoText>
           </LogoArea>
           <Input
-            placeholder="Email"
-            autoCorrect={false}
             autoCapitalize={'none'}
-            value={email}
-            onChangeText={text => setEmail(text)}
+            autoCorrect={false}
             keyboardType={'email-address'}
+            onChangeText={text => setEmail(text)}
+            placeholder="Email"
+            value={email}
           />
           <Input
-            placeholder="Senha"
             autoCorrect={false}
+            onChangeText={text => setPassword(text)}
+            placeholder="Senha"
             secureTextEntry={true}
             value={password}
-            onChangeText={text => setPassword(text)}
           />
           <Button onPress={logar}>
             {loading ? (

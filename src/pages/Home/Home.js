@@ -1,40 +1,30 @@
-import React from 'react';
-import {Text, View, SafeAreaView} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import React from 'react';
+
 import {Background, Title} from '../../components/styles';
-import {
-  Container,
-  Value,
-  ValueText,
-  ContentArea,
-  Content,
-  Category,
-  ContentItem,
-  ContentText,
-  ContentCategoryText,
-  ContentItemArea,
-  ContentValue,
-} from './HomeStyle';
+import {Container, Value, ValueText, List} from './HomeStyle';
+import ListItem from '../../components/List/List';
 
 const Home = () => {
+  const items = [
+    {id: 1, item: 'Limão', category: 'Hortifruti'},
+    {id: 2, item: 'Abacaxi', category: 'Hortifruti'},
+    {id: 3, item: 'Pera', category: 'Hortifruti'},
+    {id: 4, item: 'Uva', category: 'Hortifruti'},
+    {id: 5, item: 'Morango', category: 'Hortifruti'},
+  ];
+
   return (
     <Background>
       <Container>
         <Title> Olá : ) </Title>
         <ValueText>Este é o valor da sua Compra:</ValueText>
         <Value>R$ 120,00</Value>
-        <ContentArea>
-          <Content>
-            <Category />
-            <ContentItemArea>
-              <ContentCategoryText>Hortifruti</ContentCategoryText>
-              <ContentItem>
-                <ContentText>Limão</ContentText>
-                <ContentValue>R$ 2,50</ContentValue>
-              </ContentItem>
-            </ContentItemArea>
-          </Content>
-        </ContentArea>
+        <List
+          data={items}
+          keyExtractor={items.id}
+          renderItem={({item}) => <ListItem data={item} />}
+        />
       </Container>
     </Background>
   );

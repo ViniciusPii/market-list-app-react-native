@@ -1,6 +1,6 @@
 /* eslint-disable no-alert */
-import React, {useState} from 'react';
 import {Platform, Keyboard, ActivityIndicator} from 'react-native';
+import React, {useState} from 'react';
 
 import firebase from '../../services/firebase';
 
@@ -75,12 +75,12 @@ const CreateAccount = ({navigation}) => {
             <Title>Crie sua conta, é rapidinho! ;)</Title>
           </TitleArea>
           <Input
-            placeholder="Email"
-            autoCorrect={false}
             autoCapitalize={'none'}
-            value={email}
-            onChangeText={text => setEmail(text)}
+            autoCorrect={false}
             keyboardType={'email-address'}
+            onChangeText={text => setEmail(text)}
+            placeholder="Email"
+            value={email}
           />
           <Input
             autoCorrect={false}
