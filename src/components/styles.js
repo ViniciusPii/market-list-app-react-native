@@ -6,6 +6,12 @@ export const KeyboardAvoid = styled.KeyboardAvoidingView`
   flex: 1;
 `;
 
+export const Background = styled(LinearGradient).attrs({
+  colors: [colors.pink, colors.cianBlue],
+})`
+  flex: 1;
+`;
+
 export const Container = styled.SafeAreaView`
   flex: 1;
   justify-content: center;
@@ -20,19 +26,16 @@ export const Title = styled.Text`
   margin-bottom: 20px;
 `;
 
-export const Background = styled(LinearGradient).attrs({
-  colors: [colors.pink, colors.cianBlue],
+export const Input = styled.TextInput.attrs({
+  placeholderTextColor: `${colors.grayPlaceholder}`,
 })`
-  flex: 1;
-`;
-
-export const Input = styled.TextInput`
   height: 50px;
   width: 85%;
   background-color: ${colors.white};
   padding-left: 10px;
   border-radius: 7px;
   margin-top: 15px;
+  font-size: 16px;
 `;
 
 export const Button = styled.TouchableOpacity`

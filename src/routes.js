@@ -5,18 +5,19 @@ import Login from './pages/Login/Login';
 import CreateAccount from './pages/CreateAccount/CreateAccount';
 import Home from './pages/Home/Home';
 import NewItem from './pages/NewItem/NewItem';
+import {colors} from './components/colors';
 
 const Routes = createAppContainer(
   createSwitchNavigator({
     App: createBottomTabNavigator(
-      {Home, NewItem},
+      {NewItem, Home},
       {
         tabBarOptions: {
           showLabel: false,
-          activeTintColor: '#fff',
-          inactiveTintColor: '#A7D2FF',
+          activeTintColor: `${colors.white}`,
+          inactiveTintColor: `${colors.disableCian}`,
           style: {
-            backgroundColor: '#6FB5FF',
+            backgroundColor: `${colors.cianBlue}`,
             height: 60,
             borderTopColor: 'transparent',
           },

@@ -57,9 +57,7 @@ export const ContentValue = styled.Text`
 export const ButtonSwipe = styled.TouchableOpacity``;
 
 export const LeftArea = styled.View`
-  background-color: ${colors.blueEdit};
   height: 80px;
-  width: 55px;
   justify-content: center;
   align-items: center;
   margin: 7px 0;
@@ -72,9 +70,7 @@ export const ButtonText = styled.Text`
 `;
 
 export const RightArea = styled.View`
-  background-color: ${colors.redDelete};
   height: 80px;
-  width: 55px;
   justify-content: center;
   align-items: center;
   margin: 7px 0;
