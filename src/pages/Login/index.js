@@ -1,5 +1,5 @@
 /* eslint-disable no-alert */
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Platform, ActivityIndicator} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -17,7 +17,7 @@ import {
   Input,
   KeyboardAvoid,
 } from '../../components/styles';
-import {LogoText, Text, TextBold, LogoArea} from './LoginStyle';
+import {LogoText, Text, TextBold, LogoArea} from './styles';
 import {colors} from '../../components/colors';
 
 const Login = ({navigation}) => {

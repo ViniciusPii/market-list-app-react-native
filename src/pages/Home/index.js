@@ -2,8 +2,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import React from 'react';
 
 import {Background, Title} from '../../components/styles';
-import {Container, Value, ValueText, List} from './HomeStyle';
-import ListItem from '../../components/List/List';
+import {Container, Value, ValueText, List} from './styles';
+import ListItem from '../../components/List';
 
 const Home = () => {
   const items = [

@@ -39,7 +39,7 @@ const CreateAccount = ({navigation}) => {
       .createUserWithEmailAndPassword(email, password)
       .then(res => {
         Keyboard.dismiss();
-        alert('Eba! Cadastrado com sucesso');
+        alert('Cadastrado com sucesso!');
         setLoading(false);
         setEmail('');
         setPassword('');

@@ -8,7 +8,7 @@ import {
   ButtonText,
   Title,
 } from '../../components/styles';
-import {ContainerNew} from '../NewItem/NewItemStyle';
+import {ContainerNew} from './styles';
 import Picker from '../../components/Picker';
 
 const NewItem = ({onChange}) => {

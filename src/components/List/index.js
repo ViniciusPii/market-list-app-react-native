@@ -15,7 +15,7 @@ import {
   ContentValue,
   LeftArea,
   RightArea,
-} from './ListStyle';
+} from './styles';
 import {colors} from '../colors';
 
 const ListItem = ({data}) => {
