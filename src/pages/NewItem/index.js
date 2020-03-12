@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {View, Text, SafeAreaView} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
   Background,
@@ -11,24 +10,61 @@ import {
 import {ContainerNew} from './styles';
 import Picker from '../../components/Picker';
 
+import firebase from '../../services/firebase';
+import {Keyboard} from 'react-native';
+
 const NewItem = ({onChange}) => {
   const [item, setItem] = useState();
   const [price, setPrice] = useState();
+  const [qtd, setQtd] = useState(1);
   const [category, setCategory] = useState(null);
+
+  const handleSubmit = () => {
+    let uid = firebase.auth().currentUser.uid;
+    let key = firebase
+      .database()
+      .ref('lista')
+      .child(uid)
+      .push().key;
+
+    firebase
+      .database()
+      .ref('lista')
+      .child(uid)
+      .child(key)
+      .set({
+        category: category,
+        item: item,
+        price: parseFloat(price * qtd),
+        qtd: parseFloat(qtd),
+      });
+
+    setCategory(category);
+    setItem('');
+    setPrice('');
+    setQtd(1);
+    Keyboard.dismiss();
+  };
 
   return (
     <Background>
       <ContainerNew>
         <Title>Novo Item</Title>
+        <Picker onChange={setCategory} />
         <Input placeholder="Item" value={item} onChangeText={t => setItem(t)} />
         <Input
           placeholder="Valor"
           value={price}
           onChangeText={t => setPrice(t)}
-          keyboardType="numeric"
+          keyboardType="number-pad"
         />
-        <Picker onChange={setCategory} />
-        <Button>
+        <Input
+          placeholder="Quantidade"
+          value={qtd}
+          onChangeText={t => setQtd(t)}
+          keyboardType="number-pad"
+        />
+        <Button onPress={handleSubmit}>
           <ButtonText>Cadastrar</ButtonText>
         </Button>
       </ContainerNew>

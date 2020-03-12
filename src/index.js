@@ -3,6 +3,8 @@ import {StatusBar} from 'react-native';
 import Routes from './routes';
 import {colors} from './components/colors';
 
+console.disableYellowBox = true;
+
 const App = () => {
   return (
     <>

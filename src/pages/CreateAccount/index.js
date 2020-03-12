@@ -38,6 +38,14 @@ const CreateAccount = ({navigation}) => {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(res => {
+        let uid = firebase.auth().currentUser.uid;
+        firebase
+          .database()
+          .ref('users')
+          .child(uid)
+          .set({
+            email: email,
+          });
         Keyboard.dismiss();
         alert('Cadastrado com sucesso!');
         setLoading(false);
