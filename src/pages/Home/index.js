@@ -1,28 +1,56 @@
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 import {Background, Title} from '../../components/styles';
 import {Container, Value, ValueText, List} from './styles';
 import ListItem from '../../components/List';
 
+import firebase from '../../services/firebase';
+
 const Home = () => {
-  const items = [
-    {id: 1, item: 'Limão', category: 'Hortifruti'},
-    {id: 2, item: 'Abacaxi', category: 'Hortifruti'},
-    {id: 3, item: 'Pera', category: 'Hortifruti'},
-    {id: 4, item: 'Uva', category: 'Hortifruti'},
-    {id: 5, item: 'Morango', category: 'Hortifruti'},
-  ];
+  const [balance, setBalance] = useState();
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    setLoading();
+  }, []);
+
+  useEffect(() => {
+    setBalance(list.reduce((acc, item) => acc + item.price, 0));
+  }, [list]);
+
+  const setLoading = async () => {
+    let uid = firebase.auth().currentUser.uid;
+
+    await firebase
+      .database()
+      .ref('lista')
+      .child(uid)
+      .on('value', snapshot => {
+        setList([]);
+
+        snapshot.forEach(childItem => {
+          let NewList = {
+            key: childItem.key,
+            category: childItem.val().category,
+            item: childItem.val().item,
+            price: childItem.val().price,
+          };
+
+          setList(oldArray => [...oldArray, NewList].reverse());
+        });
+      });
+  };
 
   return (
     <Background>
       <Container>
         <Title> Olá : ) </Title>
         <ValueText>Este é o valor da sua Compra:</ValueText>
-        <Value>R$ 120,00</Value>
+        <Value>R$ - {balance}</Value>
         <List
-          data={items}
-          keyExtractor={items.id}
+          data={list}
+          keyExtractor={list.id}
           renderItem={({item}) => <ListItem data={item} />}
         />
       </Container>

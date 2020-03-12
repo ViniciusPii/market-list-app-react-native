@@ -41,6 +41,7 @@ export const ContentCategoryText = styled.Text`
   font-weight: bold;
   margin-bottom: 5px;
   color: ${colors.lightBlack};
+  text-transform: capitalize;
 `;
 
 export const ContentText = styled.Text`

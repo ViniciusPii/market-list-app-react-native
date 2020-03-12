@@ -13,13 +13,14 @@ import Picker from '../../components/Picker';
 import firebase from '../../services/firebase';
 import {Keyboard} from 'react-native';
 
-const NewItem = ({onChange}) => {
+const NewItem = ({onChange, navigation}) => {
   const [item, setItem] = useState();
   const [price, setPrice] = useState();
   const [qtd, setQtd] = useState(1);
   const [category, setCategory] = useState(null);
 
   const handleSubmit = () => {
+    Keyboard.dismiss();
     let uid = firebase.auth().currentUser.uid;
     let key = firebase
       .database()
@@ -43,7 +44,8 @@ const NewItem = ({onChange}) => {
     setItem('');
     setPrice('');
     setQtd(1);
-    Keyboard.dismiss();
+
+    navigation.navigate('Home');
   };
 
   return (

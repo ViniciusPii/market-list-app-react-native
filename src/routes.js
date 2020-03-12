@@ -17,7 +17,7 @@ const Routes = createAppContainer(
       CreateAccount,
     }),
     App: createBottomTabNavigator(
-      {NewItem, Home},
+      {Home, NewItem},
       {
         tabBarOptions: {
           showLabel: false,

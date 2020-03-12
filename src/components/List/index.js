@@ -60,7 +60,7 @@ const ListItem = ({data}) => {
             <ContentCategoryText>{data.category}</ContentCategoryText>
             <ContentItem>
               <ContentText>{data.item}</ContentText>
-              <ContentValue>R$ 2,50</ContentValue>
+              <ContentValue>R$ {data.price}</ContentValue>
             </ContentItem>
           </ContentItemArea>
         </Content>
