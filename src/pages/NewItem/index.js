@@ -57,7 +57,7 @@ const NewItem = ({onChange, navigation}) => {
         <Input
           placeholder="Valor"
           value={price}
-          onChangeText={t => setPrice(t)}
+          onChangeText={t => setPrice(t.replace(',','.'))}
           keyboardType="number-pad"
         />
         <Input

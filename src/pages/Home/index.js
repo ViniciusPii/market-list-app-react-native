@@ -47,7 +47,7 @@ const Home = () => {
       <Container>
         <Title> Olá : ) </Title>
         <ValueText>Este é o valor da sua Compra:</ValueText>
-        <Value>R$ - {balance}</Value>
+        <Value>R$ { parseFloat(balance).toFixed(2).replace('.',',')}</Value>
         <List
           data={list}
           keyExtractor={list.id}

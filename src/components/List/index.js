@@ -60,7 +60,7 @@ const ListItem = ({data}) => {
             <ContentCategoryText>{data.category}</ContentCategoryText>
             <ContentItem>
               <ContentText>{data.item}</ContentText>
-              <ContentValue>R$ {data.price}</ContentValue>
+              <ContentValue>R$ {parseFloat(data.price).toFixed(2).replace('.',',')}</ContentValue>
             </ContentItem>
           </ContentItemArea>
         </Content>
