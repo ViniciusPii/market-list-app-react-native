@@ -19,7 +19,18 @@ export const Content = styled.View`
 export const Category = styled.View`
   height: 80px;
   width: 15px;
-  background-color: ${colors.greenHorti};
+  background: ${props =>
+    props.category === 'hortifruti'
+      ? `${colors.greenHorti}`
+      : props.category === 'porcarias'
+      ? `${colors.yellowPorc}`
+      : props.category === 'mistura'
+      ? `${colors.red}`
+      : props.category === 'limpeza'
+      ? `${colors.blueClean}`
+      : props.category === 'higiene'
+      ? `${colors.blueHig}`
+      : '#fff'};
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 `;

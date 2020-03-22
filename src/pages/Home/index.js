@@ -12,20 +12,21 @@ const Home = () => {
   const [list, setList] = useState([]);
 
   useEffect(() => {
-    setLoading();
+    setLoadingList();
   }, []);
 
   useEffect(() => {
     setBalance(list.reduce((acc, item) => acc + item.price, 0));
   }, [list]);
 
-  const setLoading = async () => {
+  const setLoadingList = async () => {
     let uid = firebase.auth().currentUser.uid;
 
     await firebase
       .database()
       .ref('lista')
       .child(uid)
+      .orderByChild('order')
       .on('value', snapshot => {
         setList([]);
 
@@ -37,7 +38,7 @@ const Home = () => {
             price: childItem.val().price,
           };
 
-          setList(oldArray => [...oldArray, NewList].reverse());
+          setList(oldArray => [...oldArray, NewList]);
         });
       });
   };
@@ -47,7 +48,12 @@ const Home = () => {
       <Container>
         <Title> Olá : ) </Title>
         <ValueText>Este é o valor da sua Compra:</ValueText>
-        <Value>R$ { parseFloat(balance).toFixed(2).replace('.',',')}</Value>
+        <Value>
+          R${' '}
+          {parseFloat(balance)
+            .toFixed(2)
+            .replace('.', ',')}
+        </Value>
         <List
           data={list}
           keyExtractor={list.id}

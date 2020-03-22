@@ -18,6 +18,7 @@ const NewItem = ({onChange, navigation}) => {
   const [price, setPrice] = useState();
   const [qtd, setQtd] = useState(1);
   const [category, setCategory] = useState(null);
+  const [order, setOrder] = useState(0);
 
   const handleSubmit = () => {
     Keyboard.dismiss();
@@ -27,6 +28,8 @@ const NewItem = ({onChange, navigation}) => {
       .ref('lista')
       .child(uid)
       .push().key;
+
+    setOrder(order - 1);
 
     firebase
       .database()
@@ -38,14 +41,15 @@ const NewItem = ({onChange, navigation}) => {
         item: item,
         price: parseFloat(price * qtd),
         qtd: parseFloat(qtd),
+        order: order,
       });
+
+    navigation.navigate('Home');
 
     setCategory(category);
     setItem('');
     setPrice('');
     setQtd(1);
-
-    navigation.navigate('Home');
   };
 
   return (
@@ -57,11 +61,11 @@ const NewItem = ({onChange, navigation}) => {
         <Input
           placeholder="Valor"
           value={price}
-          onChangeText={t => setPrice(t.replace(',','.'))}
+          onChangeText={t => setPrice(t.replace(',', '.'))}
           keyboardType="number-pad"
         />
         <Input
-          placeholder="Quantidade"
+          placeholder="Quantidade: Valor Padrão é 1"
           value={qtd}
           onChangeText={t => setQtd(t)}
           keyboardType="number-pad"

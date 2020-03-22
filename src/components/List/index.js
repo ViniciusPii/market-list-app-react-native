@@ -17,6 +17,7 @@ import {
   RightArea,
 } from './styles';
 import {colors} from '../colors';
+import {Text} from 'react-native';
 
 const ListItem = ({data}) => {
   const leftActions = () => {
@@ -55,12 +56,17 @@ const ListItem = ({data}) => {
       renderRightActions={rightActions}>
       <ContentArea>
         <Content>
-          <Category />
+          <Category category={data.category} />
           <ContentItemArea>
             <ContentCategoryText>{data.category}</ContentCategoryText>
             <ContentItem>
               <ContentText>{data.item}</ContentText>
-              <ContentValue>R$ {parseFloat(data.price).toFixed(2).replace('.',',')}</ContentValue>
+              <ContentValue>
+                R${' '}
+                {parseFloat(data.price)
+                  .toFixed(2)
+                  .replace('.', ',')}
+              </ContentValue>
             </ContentItem>
           </ContentItemArea>
         </Content>
