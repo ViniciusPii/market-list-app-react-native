@@ -46,6 +46,14 @@ const CreateAccount = ({navigation}) => {
           .set({
             email: email,
           });
+
+        firebase
+          .database()
+          .ref('order')
+          .child(uid)
+          .set({
+            order: 0,
+          });
         Keyboard.dismiss();
         alert('Cadastrado com sucesso!');
         setLoading(false);

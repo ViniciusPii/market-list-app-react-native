@@ -1,9 +1,17 @@
 import React, {useEffect} from 'react';
 import firebase from 'firebase';
-import {Background, Container} from '../styles';
-import {LogoArea, LogoText, TextBold, Text} from './styles';
+
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {colors} from '../colors';
+import {
+  Background,
+  Container,
+  LogoArea,
+  LogoText,
+  Text,
+  TextBold,
+} from '../styles';
+import Logo from '../Logo';
 
 const Preload = ({navigation}) => {
   useEffect(() => {
@@ -19,13 +27,7 @@ const Preload = ({navigation}) => {
   return (
     <Background>
       <Container>
-        <LogoArea>
-          <Icon name="cart-outline" size={70} color={colors.white} />
-          <LogoText>
-            <Text>market</Text>
-            <TextBold>list</TextBold>
-          </LogoText>
-        </LogoArea>
+        <Logo />
       </Container>
     </Background>
   );

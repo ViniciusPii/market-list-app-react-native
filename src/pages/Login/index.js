@@ -19,6 +19,7 @@ import {
 } from '../../components/styles';
 import {LogoText, Text, TextBold, LogoArea} from './styles';
 import {colors} from '../../components/colors';
+import Logo from '../../components/Logo';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -44,13 +45,7 @@ const Login = ({navigation}) => {
     <Background>
       <KeyboardAvoid behavior={Platform.OS === 'ios' ? 'padding' : ''}>
         <Container>
-          <LogoArea>
-            <Icon name="cart-outline" size={70} color={colors.white} />
-            <LogoText>
-              <Text>market</Text>
-              <TextBold>list</TextBold>
-            </LogoText>
-          </LogoArea>
+          <Logo />
           <Input
             autoCapitalize={'none'}
             autoCorrect={false}

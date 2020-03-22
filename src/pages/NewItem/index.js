@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
   Background,
@@ -18,18 +18,35 @@ const NewItem = ({onChange, navigation}) => {
   const [price, setPrice] = useState();
   const [qtd, setQtd] = useState(1);
   const [category, setCategory] = useState(null);
-  const [order, setOrder] = useState(0);
+  const [order, setOrder] = useState(order);
+
+  let uid = firebase.auth().currentUser.uid;
+
+  useEffect(() => {
+    firebase
+      .database()
+      .ref('order')
+      .child(uid)
+      .once('value', snap => {
+        setOrder(snap.val().order - 1);
+      });
+  });
 
   const handleSubmit = () => {
     Keyboard.dismiss();
-    let uid = firebase.auth().currentUser.uid;
     let key = firebase
       .database()
       .ref('lista')
       .child(uid)
       .push().key;
 
-    setOrder(order - 1);
+    firebase
+      .database()
+      .ref('order')
+      .child(uid)
+      .once('value', snap => {
+        setOrder(snap.val().order);
+      });
 
     firebase
       .database()
@@ -41,6 +58,14 @@ const NewItem = ({onChange, navigation}) => {
         item: item,
         price: parseFloat(price * qtd),
         qtd: parseFloat(qtd),
+        order: order,
+      });
+
+    firebase
+      .database()
+      .ref('order')
+      .child(uid)
+      .set({
         order: order,
       });
 
