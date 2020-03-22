@@ -2,6 +2,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import React from 'react';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
+import firebase from '../../services/firebase';
+
 import {
   ButtonSwipe,
   ButtonText,
@@ -17,7 +19,7 @@ import {
   RightArea,
 } from './styles';
 import {colors} from '../colors';
-import {Text} from 'react-native';
+import {Text, Alert} from 'react-native';
 
 const ListItem = ({data}) => {
   const leftActions = () => {
@@ -43,11 +45,26 @@ const ListItem = ({data}) => {
   };
 
   const handleLeft = () => {
-    alert('Editar');
+    alert('editar');
   };
 
   const handleRight = () => {
-    alert('Excluir');
+    let key = data.key;
+    let id = firebase.auth().currentUser.uid;
+    Alert.alert('Deseja Realmente Excluir?', '', [
+      {text: 'Cancelar'},
+      {
+        text: 'Excluir',
+        onPress: () => {
+          firebase
+            .database()
+            .ref('lista')
+            .child(id)
+            .child(key)
+            .remove();
+        },
+      },
+    ]);
   };
 
   return (
