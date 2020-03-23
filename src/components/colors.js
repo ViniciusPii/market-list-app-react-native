@@ -9,6 +9,7 @@ export const colors = {
   rose: '#FF87C0',
   white: '#fff',
   red: '#E01E10',
+  redDel: '#DE453A',
   greenHorti: '#00D900',
   blueClean: '#0890EC',
   yellowPorc: '#DE8210',

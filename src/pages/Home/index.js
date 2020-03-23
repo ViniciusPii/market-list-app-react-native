@@ -2,10 +2,12 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import React, {useState, useEffect} from 'react';
 
 import {Background, Title} from '../../components/styles';
-import {Container, Value, ValueText, List} from './styles';
+import {Container, Value, ValueText, List, DelButton} from './styles';
 import ListItem from '../../components/List';
 
 import firebase from '../../services/firebase';
+import {colors} from '../../components/colors';
+import {Alert} from 'react-native';
 
 const Home = () => {
   const [balance, setBalance] = useState();
@@ -21,7 +23,6 @@ const Home = () => {
 
   const setLoadingList = async () => {
     let uid = firebase.auth().currentUser.uid;
-
     await firebase
       .database()
       .ref('lista')
@@ -43,9 +44,30 @@ const Home = () => {
       });
   };
 
+  const deleteAll = () => {
+    let uid = firebase.auth().currentUser.uid;
+
+    Alert.alert('Deseja Apagar sua Lista?', '', [
+      {text: 'Cancelar'},
+      {
+        text: 'Excluir',
+        onPress: () => {
+          firebase
+            .database()
+            .ref('lista')
+            .child(uid)
+            .remove();
+        },
+      },
+    ]);
+  };
+
   return (
     <Background>
       <Container>
+        <DelButton onPress={deleteAll}>
+          <Icon name="trash-can-outline" size={30} color={colors.white} />
+        </DelButton>
         <Title> Olá : ) </Title>
         <ValueText>Este é o valor da sua Compra:</ValueText>
         <Value>

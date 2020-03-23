@@ -71,10 +71,10 @@ const NewItem = ({onChange, navigation}) => {
 
     navigation.navigate('Home');
 
-    setCategory(category);
-    setItem('');
-    setPrice('');
-    setQtd(1);
+    // setCategory(category);
+    // setItem('');
+    // setPrice('');
+    // setQtd(1);
   };
 
   return (

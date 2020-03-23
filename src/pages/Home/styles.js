@@ -24,3 +24,15 @@ export const Value = styled.Text`
 export const List = styled.FlatList`
   width: 100%;
 `;
+
+export const DelButton = styled.TouchableOpacity`
+  height: 50px;
+  width: 50px;
+  /* background-color: ${colors.redDel}; */
+  border-radius: 50px;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  right: 25px; 
+`;
