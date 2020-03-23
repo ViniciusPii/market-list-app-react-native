@@ -32,7 +32,7 @@ const NewItem = ({onChange, navigation}) => {
       });
   });
 
-  const handleSubmit = () => {
+  const handleSubmitAdd = () => {
     Keyboard.dismiss();
     let key = firebase
       .database()
@@ -71,10 +71,10 @@ const NewItem = ({onChange, navigation}) => {
 
     navigation.navigate('Home');
 
-    // setCategory(category);
-    // setItem('');
-    // setPrice('');
-    // setQtd(1);
+    setCategory(category);
+    setItem('');
+    setPrice('');
+    setQtd(1);
   };
 
   return (
@@ -82,12 +82,18 @@ const NewItem = ({onChange, navigation}) => {
       <ContainerNew>
         <Title>Novo Item</Title>
         <Picker onChange={setCategory} />
-        <Input placeholder="Item" value={item} onChangeText={t => setItem(t)} />
+        <Input
+          placeholder="Item"
+          value={item}
+          onChangeText={t => setItem(t)}
+          returnKeyType="next"
+        />
         <Input
           placeholder="Valor"
           value={price}
           onChangeText={t => setPrice(t.replace(',', '.'))}
           keyboardType="number-pad"
+          returnKeyType="next"
         />
         <Input
           placeholder="Quantidade: Valor Padrão é 1"
@@ -95,7 +101,7 @@ const NewItem = ({onChange, navigation}) => {
           onChangeText={t => setQtd(t)}
           keyboardType="number-pad"
         />
-        <Button onPress={handleSubmit}>
+        <Button onPress={handleSubmitAdd}>
           <ButtonText>Cadastrar</ButtonText>
         </Button>
       </ContainerNew>

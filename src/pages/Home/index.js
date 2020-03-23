@@ -65,9 +65,6 @@ const Home = () => {
   return (
     <Background>
       <Container>
-        <DelButton onPress={deleteAll}>
-          <Icon name="trash-can-outline" size={30} color={colors.white} />
-        </DelButton>
         <Title> Olá : ) </Title>
         <ValueText>Este é o valor da sua Compra:</ValueText>
         <Value>
@@ -81,6 +78,9 @@ const Home = () => {
           keyExtractor={list.id}
           renderItem={({item}) => <ListItem data={item} />}
         />
+        <DelButton onPress={deleteAll}>
+          <Icon name="trash-can-outline" size={30} color={colors.white} />
+        </DelButton>
       </Container>
     </Background>
   );

@@ -74,7 +74,6 @@ export const LeftArea = styled.View`
   align-items: center;
   margin: 7px 0;
   margin-left: 20px;
-  border-radius: 7px;
 `;
 
 export const ButtonText = styled.Text`
@@ -87,5 +86,4 @@ export const RightArea = styled.View`
   align-items: center;
   margin: 7px 0;
   margin-right: 20px;
-  border-radius: 7px;
 `;

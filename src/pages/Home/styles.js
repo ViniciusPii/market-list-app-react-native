@@ -26,13 +26,14 @@ export const List = styled.FlatList`
 `;
 
 export const DelButton = styled.TouchableOpacity`
-  height: 50px;
-  width: 50px;
-  /* background-color: ${colors.redDel}; */
+  height: 45px;
+  width: 45px;
+  background-color: ${colors.pink};
   border-radius: 50px;
   position: absolute;
   align-items: center;
   justify-content: center;
-  z-index: 10;
-  right: 25px; 
+  right: 25px;
+  bottom: 25px;
+  z-index: 1;
 `;

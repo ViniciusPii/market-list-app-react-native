@@ -1,12 +1,11 @@
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import React from 'react';
+import React, {useState} from 'react';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 import firebase from '../../services/firebase';
 
 import {
   ButtonSwipe,
-  ButtonText,
   Category,
   Content,
   ContentArea,
@@ -19,9 +18,15 @@ import {
   RightArea,
 } from './styles';
 import {colors} from '../colors';
-import {Text, Alert} from 'react-native';
+import {Text, Alert, Modal} from 'react-native';
+import {Background, Title, Input, Button, ButtonText} from '../styles';
+import {ContainerNew} from '../../pages/NewItem/styles';
+import Picker from '../Picker';
 
 const ListItem = ({data}) => {
+  const [open, setOpen] = useState(false);
+  const [closeCard, setCloseCard] = useState([]);
+
   const leftActions = () => {
     return (
       <ButtonSwipe onPress={handleLeft}>
@@ -45,14 +50,19 @@ const ListItem = ({data}) => {
   };
 
   const handleLeft = () => {
-    alert('editar');
+    closeCard.close();
   };
 
   const handleRight = () => {
     let key = data.key;
     let id = firebase.auth().currentUser.uid;
     Alert.alert('Deseja Realmente Excluir?', '', [
-      {text: 'Cancelar'},
+      {
+        text: 'Cancelar',
+        onPress: () => {
+          closeCard.close();
+        },
+      },
       {
         text: 'Excluir',
         onPress: () => {
@@ -69,9 +79,45 @@ const ListItem = ({data}) => {
 
   return (
     <Swipeable
+      ref={ref => {
+        setCloseCard(ref);
+      }}
       renderLeftActions={leftActions}
       renderRightActions={rightActions}>
       <ContentArea>
+        <Modal animationType="slide" transparent={false} visible={open}>
+          <Background>
+            <ContainerNew>
+              <Title>Editar Item</Title>
+              <Picker onChange={() => {}} />
+              <Input
+                placeholder="Item"
+                value={() => {}}
+                onChangeText={() => {}}
+                returnKeyType="next"
+              />
+              <Input
+                placeholder="Valor"
+                value={() => {}}
+                onChangeText={() => {}}
+                keyboardType="number-pad"
+                returnKeyType="next"
+              />
+              <Input
+                placeholder="Quantidade: Valor Padrão é 1"
+                value={() => {}}
+                onChangeText={() => {}}
+                keyboardType="number-pad"
+              />
+              <Button
+                onPress={() => {
+                  setOpen(false);
+                }}>
+                <ButtonText>Editar</ButtonText>
+              </Button>
+            </ContainerNew>
+          </Background>
+        </Modal>
         <Content>
           <Category category={data.category} />
           <ContentItemArea>
