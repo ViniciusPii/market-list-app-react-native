@@ -17,7 +17,6 @@ import {
   LeftArea,
   RightArea,
   ButtonText,
-  ContentTextArea,
 } from './styles';
 import {colors} from '../colors';
 import {Alert} from 'react-native';

@@ -1,15 +1,13 @@
 import React from 'react';
-import {SafeAreaView, Text, TouchableOpacity} from 'react-native';
 import {
   Background,
-  Container,
   Title,
   Input,
   Button,
   ButtonText,
+  ContainerItem,
 } from '../../components/styles';
 import Picker from '../../components/Picker';
-import {ContainerItem} from '../NewItem/styles';
 
 const EditItem = ({navigation}) => {
   return (
@@ -36,7 +34,10 @@ const EditItem = ({navigation}) => {
           onChangeText={() => {}}
           keyboardType="number-pad"
         />
-        <Button onPress={() => {}}>
+        <Button
+          onPress={() => {
+            navigation.navigate('Home');
+          }}>
           <ButtonText>Editar</ButtonText>
         </Button>
       </ContainerItem>
