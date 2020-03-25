@@ -1,5 +1,5 @@
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import React, {useState} from 'react';
+import React from 'react';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 import firebase from '../../services/firebase';
@@ -16,16 +16,13 @@ import {
   ContentValue,
   LeftArea,
   RightArea,
+  ButtonText,
 } from './styles';
 import {colors} from '../colors';
-import {Text, Alert, Modal} from 'react-native';
-import {Background, Title, Input, Button, ButtonText} from '../styles';
-import {ContainerNew} from '../../pages/NewItem/styles';
-import Picker from '../Picker';
+import {Alert} from 'react-native';
 
-const ListItem = ({data}) => {
-  const [open, setOpen] = useState(false);
-  const [closeCard, setCloseCard] = useState([]);
+const ListItem = ({data, navigation}) => {
+  let closeCard;
 
   const leftActions = () => {
     return (
@@ -51,6 +48,7 @@ const ListItem = ({data}) => {
 
   const handleLeft = () => {
     closeCard.close();
+    navigation.navigate('EditItem');
   };
 
   const handleRight = () => {
@@ -80,44 +78,11 @@ const ListItem = ({data}) => {
   return (
     <Swipeable
       ref={ref => {
-        setCloseCard(ref);
+        closeCard = ref;
       }}
       renderLeftActions={leftActions}
       renderRightActions={rightActions}>
       <ContentArea>
-        <Modal animationType="slide" transparent={false} visible={open}>
-          <Background>
-            <ContainerNew>
-              <Title>Editar Item</Title>
-              <Picker onChange={() => {}} />
-              <Input
-                placeholder="Item"
-                value={() => {}}
-                onChangeText={() => {}}
-                returnKeyType="next"
-              />
-              <Input
-                placeholder="Valor"
-                value={() => {}}
-                onChangeText={() => {}}
-                keyboardType="number-pad"
-                returnKeyType="next"
-              />
-              <Input
-                placeholder="Quantidade: Valor Padrão é 1"
-                value={() => {}}
-                onChangeText={() => {}}
-                keyboardType="number-pad"
-              />
-              <Button
-                onPress={() => {
-                  setOpen(false);
-                }}>
-                <ButtonText>Editar</ButtonText>
-              </Button>
-            </ContainerNew>
-          </Background>
-        </Modal>
         <Content>
           <Category category={data.category} />
           <ContentItemArea>

@@ -7,6 +7,7 @@ import CreateAccount from './pages/CreateAccount';
 import Home from './pages/Home';
 import NewItem from './pages/NewItem';
 import LogOff from './pages/LogOff';
+import EditItem from './pages/EditItem';
 
 import {colors} from './components/colors';
 
@@ -32,6 +33,7 @@ const Routes = createAppContainer(
         },
       },
     ),
+    Edit: createSwitchNavigator({EditItem}),
   }),
 );
 

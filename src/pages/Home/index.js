@@ -9,7 +9,7 @@ import firebase from '../../services/firebase';
 import {colors} from '../../components/colors';
 import {Alert} from 'react-native';
 
-const Home = () => {
+const Home = ({navigation}) => {
   const [balance, setBalance] = useState();
   const [list, setList] = useState([]);
 
@@ -76,7 +76,9 @@ const Home = () => {
         <List
           data={list}
           keyExtractor={list.id}
-          renderItem={({item}) => <ListItem data={item} />}
+          renderItem={({item}) => (
+            <ListItem data={item} navigation={navigation} />
+          )}
         />
         <DelButton onPress={deleteAll}>
           <Icon name="trash-can-outline" size={30} color={colors.white} />
