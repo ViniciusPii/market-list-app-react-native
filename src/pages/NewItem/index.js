@@ -6,6 +6,7 @@ import {
   Button,
   ButtonText,
   Title,
+  ContainerItem,
 } from '../../components/styles';
 import {ContainerNew} from './styles';
 import Picker from '../../components/Picker';
@@ -79,7 +80,7 @@ const NewItem = ({onChange, navigation}) => {
 
   return (
     <Background>
-      <ContainerNew>
+      <ContainerItem>
         <Title>Novo Item</Title>
         <Picker onChange={setCategory} />
         <Input
@@ -104,7 +105,7 @@ const NewItem = ({onChange, navigation}) => {
         <Button onPress={handleSubmitAdd}>
           <ButtonText>Cadastrar</ButtonText>
         </Button>
-      </ContainerNew>
+      </ContainerItem>
     </Background>
   );
 };
