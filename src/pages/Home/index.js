@@ -37,6 +37,7 @@ const Home = ({navigation}) => {
             category: childItem.val().category,
             item: childItem.val().item,
             price: childItem.val().price,
+            qtd: childItem.val().qtd,
           };
 
           setList(oldArray => [...oldArray, NewList]);

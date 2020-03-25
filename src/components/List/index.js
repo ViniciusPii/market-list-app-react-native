@@ -17,6 +17,7 @@ import {
   LeftArea,
   RightArea,
   ButtonText,
+  ContentTextArea,
 } from './styles';
 import {colors} from '../colors';
 import {Alert} from 'react-native';
@@ -88,7 +89,7 @@ const ListItem = ({data, navigation}) => {
           <ContentItemArea>
             <ContentCategoryText>{data.category}</ContentCategoryText>
             <ContentItem>
-              <ContentText>{data.item}</ContentText>
+              <ContentText>{`${data.qtd}x - ${data.item}`}</ContentText>
               <ContentValue>
                 R${' '}
                 {parseFloat(data.price)
