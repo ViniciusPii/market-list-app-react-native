@@ -10,8 +10,9 @@ import {
 } from '../../components/styles';
 import firebase from '../../services/firebase';
 import Logo from '../../components/Logo';
+import {LoginManager} from 'react-native-fbsdk';
 
-const LogOff = () => {
+const LogOff = ({navigation}) => {
   const handleClick = () => {
     Alert.alert('Já vai? =/', 'Deseja Realmente Sair?', [
       {text: 'Cancelar'},
@@ -19,6 +20,8 @@ const LogOff = () => {
         text: 'Sair',
         onPress: () => {
           firebase.auth().signOut();
+          LoginManager.logOut();
+          navigation.navigate('Login');
         },
       },
     ]);

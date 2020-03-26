@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import {Platform, ActivityIndicator} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import firebase from '../../services/firebase';
+import firebase from 'firebase';
 
 import {
   Background,
@@ -17,9 +17,10 @@ import {
   Input,
   KeyboardAvoid,
 } from '../../components/styles';
-import {LogoText, Text, TextBold, LogoArea} from './styles';
 import {colors} from '../../components/colors';
 import Logo from '../../components/Logo';
+import {LoginButton, AccessToken, LoginManager} from 'react-native-fbsdk';
+import {BtnFace, Separator} from './styles';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -38,6 +39,43 @@ const Login = ({navigation}) => {
       .catch(erro => {
         alert('Ah não! Usuário ou Senha incorretos');
         setLoading(false);
+      });
+  };
+
+  const logFace = () => {
+    LoginManager.logInWithPermissions(['public_profile', 'email'])
+      .then(res => {
+        if (res.isCancelled) {
+          return Promise.reject(new Error('cancelado'));
+        }
+        return AccessToken.getCurrentAccessToken();
+      })
+      .then(data => {
+        const credential = firebase.auth.FacebookAuthProvider.credential(
+          data.accessToken,
+        );
+        return firebase.auth().signInWithCredential(credential);
+      })
+      .then(currentUser => {
+        let uid = firebase.auth().currentUser.uid;
+        firebase
+          .database()
+          .ref('users')
+          .child(uid)
+          .set({
+            email: currentUser.user.email,
+          });
+
+        firebase
+          .database()
+          .ref('order')
+          .child(uid)
+          .set({
+            order: 0,
+          });
+      })
+      .catch(error => {
+        alert('tururu');
       });
   };
 
@@ -74,6 +112,11 @@ const Login = ({navigation}) => {
               <FooterButtonText>Criar</FooterButtonText>
             </FooterButton>
           </FooterArea>
+          <Separator>Ou</Separator>
+          <BtnFace onPress={logFace}>
+            <Icon name="facebook" size={30} color={colors.white} />
+            <ButtonText>Login com Facebook</ButtonText>
+          </BtnFace>
         </Container>
       </KeyboardAvoid>
     </Background>
