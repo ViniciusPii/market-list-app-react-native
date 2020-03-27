@@ -3,7 +3,7 @@ import {PickerView} from './styles';
 import RNPickerSelect from 'react-native-picker-select';
 import {colors} from '../colors';
 
-const Picker = ({onChange}) => {
+const Picker = ({onChange, value}) => {
   return (
     <PickerView>
       <RNPickerSelect
@@ -19,7 +19,6 @@ const Picker = ({onChange}) => {
         }}
         placeholder={{
           label: 'Categoria',
-          value: null,
         }}
         onValueChange={categoty => onChange(categoty)}
         items={[

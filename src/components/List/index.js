@@ -48,7 +48,7 @@ const ListItem = ({data, navigation}) => {
 
   const handleLeft = () => {
     closeCard.close();
-    navigation.navigate('EditItem');
+    navigation.navigate('EditItem', {id: data.key});
   };
 
   const handleRight = () => {

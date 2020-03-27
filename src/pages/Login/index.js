@@ -75,7 +75,7 @@ const Login = ({navigation}) => {
           });
       })
       .catch(error => {
-        alert('tururu');
+        alert('Falha ao Logar com o Facebook');
       });
   };
 
