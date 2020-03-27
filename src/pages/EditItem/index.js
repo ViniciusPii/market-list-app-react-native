@@ -15,7 +15,7 @@ const EditItem = ({onChange, navigation}) => {
   const [item, setItem] = useState();
   const [price, setPrice] = useState();
   const [qtd, setQtd] = useState(1);
-  const [category, setCategory] = useState(null);
+  const [category, setCategory] = useState();
   const [order, setOrder] = useState(order);
 
   const id = navigation.state.params.id;
@@ -27,12 +27,12 @@ const EditItem = ({onChange, navigation}) => {
       .ref('lista')
       .child(uid)
       .child(id)
-      .on('value', snap => {
-        setCategory(snap.val().category);
-        setItem(snap.val().item);
-        setPrice(snap.val().price);
-        setQtd(snap.val().qtd);
-        setOrder(snap.val().order);
+      .once('value', aqui => {
+        setCategory(aqui.val().category);
+        setItem(aqui.val().item);
+        setPrice(aqui.val().price);
+        setQtd(aqui.val().qtd);
+        setOrder(aqui.val().order);
       });
   }, [id, uid]);
 
@@ -45,7 +45,7 @@ const EditItem = ({onChange, navigation}) => {
       .set({
         category: category,
         item: item,
-        price: parseFloat(price),
+        price: parseFloat(price * qtd),
         qtd: parseFloat(qtd),
         order: parseFloat(order),
       });
@@ -67,7 +67,7 @@ const EditItem = ({onChange, navigation}) => {
         <Input
           placeholder="Valor"
           value={String(price)}
-          onChangeText={t => setPrice(t)}
+          onChangeText={t => setPrice(t.replace(',', '.'))}
           keyboardType="number-pad"
           returnKeyType="next"
         />

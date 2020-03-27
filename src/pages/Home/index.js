@@ -12,9 +12,9 @@ import {Alert} from 'react-native';
 const Home = ({navigation}) => {
   const [balance, setBalance] = useState();
   const [list, setList] = useState([]);
+  let uid = firebase.auth().currentUser.uid;
 
   useEffect(() => {
-    let uid = firebase.auth().currentUser.uid;
     firebase
       .database()
       .ref('lista')
@@ -35,15 +35,13 @@ const Home = ({navigation}) => {
           setList(oldArray => [...oldArray, NewList]);
         });
       });
-  }, []);
+  }, [uid]);
 
   useEffect(() => {
     setBalance(list.reduce((acc, item) => acc + item.price, 0));
   }, [list]);
 
   const deleteAll = () => {
-    let uid = firebase.auth().currentUser.uid;
-
     Alert.alert('Deseja Apagar sua Lista?', '', [
       {text: 'Cancelar'},
       {

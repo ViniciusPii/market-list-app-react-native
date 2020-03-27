@@ -17,7 +17,7 @@ const NewItem = ({onChange, navigation}) => {
   const [item, setItem] = useState();
   const [price, setPrice] = useState();
   const [qtd, setQtd] = useState(1);
-  const [category, setCategory] = useState(null);
+  const [category, setCategory] = useState();
   const [order, setOrder] = useState(order);
 
   let uid = firebase.auth().currentUser.uid;
@@ -44,7 +44,7 @@ const NewItem = ({onChange, navigation}) => {
       .database()
       .ref('order')
       .child(uid)
-      .on('value', snap => {
+      .once('value', snap => {
         setOrder(snap.val().order);
       });
 
@@ -58,7 +58,7 @@ const NewItem = ({onChange, navigation}) => {
         item: item,
         price: parseFloat(price * qtd),
         qtd: parseFloat(qtd),
-        order: order,
+        order: parseFloat(order),
       });
 
     firebase

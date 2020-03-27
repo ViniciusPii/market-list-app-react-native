@@ -19,7 +19,6 @@ const Picker = ({onChange, value}) => {
         }}
         placeholder={{
           label: 'Categoria',
-          value: null,
         }}
         onValueChange={categoty => onChange(categoty)}
         value={value}
