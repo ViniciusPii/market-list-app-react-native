@@ -19,8 +19,10 @@ const Picker = ({onChange, value}) => {
         }}
         placeholder={{
           label: 'Categoria',
+          value: null,
         }}
         onValueChange={categoty => onChange(categoty)}
+        value={value}
         items={[
           {label: 'Hortifruti', value: 'hortifruti'},
           {label: 'Porcarias', value: 'porcarias'},

@@ -14,16 +14,8 @@ const Home = ({navigation}) => {
   const [list, setList] = useState([]);
 
   useEffect(() => {
-    setLoadingList();
-  }, []);
-
-  useEffect(() => {
-    setBalance(list.reduce((acc, item) => acc + item.price, 0));
-  }, [list]);
-
-  const setLoadingList = async () => {
     let uid = firebase.auth().currentUser.uid;
-    await firebase
+    firebase
       .database()
       .ref('lista')
       .child(uid)
@@ -43,7 +35,11 @@ const Home = ({navigation}) => {
           setList(oldArray => [...oldArray, NewList]);
         });
       });
-  };
+  }, []);
+
+  useEffect(() => {
+    setBalance(list.reduce((acc, item) => acc + item.price, 0));
+  }, [list]);
 
   const deleteAll = () => {
     let uid = firebase.auth().currentUser.uid;

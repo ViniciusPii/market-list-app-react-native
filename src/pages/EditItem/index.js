@@ -10,10 +10,8 @@ import {
 import Picker from '../../components/Picker';
 
 import firebase from '../../services/firebase';
-import {Text} from 'react-native';
 
-const EditItem = ({navigation}) => {
-  const [data, setData] = useState();
+const EditItem = ({onChange, navigation}) => {
   const [item, setItem] = useState();
   const [price, setPrice] = useState();
   const [qtd, setQtd] = useState(1);
@@ -21,9 +19,9 @@ const EditItem = ({navigation}) => {
   const [order, setOrder] = useState(order);
 
   const id = navigation.state.params.id;
+  let uid = firebase.auth().currentUser.uid;
 
   useEffect(() => {
-    let uid = firebase.auth().currentUser.uid;
     firebase
       .database()
       .ref('lista')
@@ -36,15 +34,30 @@ const EditItem = ({navigation}) => {
         setQtd(snap.val().qtd);
         setOrder(snap.val().order);
       });
-  }, [id]);
+  }, [id, uid]);
+
+  const handleSubmitEdit = () => {
+    firebase
+      .database()
+      .ref('lista')
+      .child(uid)
+      .child(id)
+      .set({
+        category: category,
+        item: item,
+        price: parseFloat(price),
+        qtd: parseFloat(qtd),
+        order: parseFloat(order),
+      });
+
+    navigation.navigate('Home');
+  };
 
   return (
     <Background>
       <ContainerItem>
-        <Text>{category}</Text>
-        <Text>{order}</Text>
         <Title>Editar Item</Title>
-        <Picker onChange={setCategory} />
+        <Picker value={category} onChange={setCategory} />
         <Input
           placeholder="Item"
           value={item}
@@ -64,10 +77,7 @@ const EditItem = ({navigation}) => {
           onChangeText={t => setQtd(t)}
           keyboardType="number-pad"
         />
-        <Button
-          onPress={() => {
-            navigation.navigate('Home');
-          }}>
+        <Button onPress={handleSubmitEdit}>
           <ButtonText>Editar</ButtonText>
         </Button>
       </ContainerItem>

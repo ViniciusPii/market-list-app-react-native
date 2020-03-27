@@ -8,7 +8,6 @@ import {
   Title,
   ContainerItem,
 } from '../../components/styles';
-import {ContainerNew} from './styles';
 import Picker from '../../components/Picker';
 
 import firebase from '../../services/firebase';
@@ -45,7 +44,7 @@ const NewItem = ({onChange, navigation}) => {
       .database()
       .ref('order')
       .child(uid)
-      .once('value', snap => {
+      .on('value', snap => {
         setOrder(snap.val().order);
       });
 
