@@ -19,16 +19,24 @@ export const Category = styled.View`
   height: 100%;
   width: 15px;
   background: ${props =>
-    props.category === 'hortifruti'
-      ? `${colors.greenHorti}`
-      : props.category === 'porcarias'
-      ? `${colors.yellowPorc}`
-      : props.category === 'mistura'
-      ? `${colors.red}`
-      : props.category === 'limpeza'
-      ? `${colors.blueClean}`
+    props.category === 'basicos'
+      ? `${colors.grayBas}`
+      : props.category === 'bebidas'
+      ? `${colors.greenBeb}`
+      : props.category === 'besteiras'
+      ? `${colors.yellowGul}`
+      : props.category === 'carnes'
+      ? `${colors.redCar}`
       : props.category === 'higiene'
       ? `${colors.blueHig}`
+      : props.category === 'hortifruti'
+      ? `${colors.greenHort}`
+      : props.category === 'limpeza'
+      ? `${colors.blueLim}`
+      : props.category === 'padaria'
+      ? `${colors.beigePa}`
+      : props.category === 'outros'
+      ? `${colors.blackText}`
       : '#fff'};
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;

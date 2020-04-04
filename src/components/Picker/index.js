@@ -23,11 +23,15 @@ const Picker = ({onChange, value}) => {
         onValueChange={categoty => onChange(categoty)}
         value={value}
         items={[
-          {label: 'Hortifruti', value: 'hortifruti'},
-          {label: 'Porcarias', value: 'porcarias'},
-          {label: 'Mistura', value: 'mistura'},
-          {label: 'Limpeza', value: 'limpeza'},
+          {label: 'Básicos', value: 'basicos'},
+          {label: 'Bebidas', value: 'bebidas'},
+          {label: 'Besteiras', value: 'besteiras'},
+          {label: 'Carnes', value: 'carnes'},
           {label: 'Higiene', value: 'higiene'},
+          {label: 'Hortifruti', value: 'hortifruti'},
+          {label: 'Limpeza', value: 'limpeza'},
+          {label: 'Padaria', value: 'padaria'},
+          {label: 'Outros', value: 'outros'},
         ]}
       />
     </PickerView>

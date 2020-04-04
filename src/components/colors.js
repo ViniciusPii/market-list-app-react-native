@@ -8,10 +8,14 @@ export const colors = {
   pink: '#FF4CA9',
   rose: '#FF87C0',
   white: '#fff',
-  red: '#E01E10',
-  redDel: '#DE453A',
-  greenHorti: '#00D900',
-  blueClean: '#0890EC',
-  yellowPorc: '#DE8210',
-  blueHig: '#12DCFB',
+  //
+
+  grayBas: '#B3B3B3',
+  greenBeb: '#43FCCB',
+  yellowGul: '#ECDB69',
+  redCar: '#A54D49',
+  blueHig: '#249CAC',
+  greenHort: '#04CC04',
+  blueLim: '#0890EC',
+  beigePa: '#F6D18E',
 };
