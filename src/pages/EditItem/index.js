@@ -30,7 +30,7 @@ const EditItem = ({onChange, navigation}) => {
       .once('value', aqui => {
         setCategory(aqui.val().category);
         setItem(aqui.val().item);
-        setPrice(aqui.val().price);
+        setPrice(aqui.val().singlePrice);
         setQtd(aqui.val().qtd);
         setOrder(aqui.val().order);
       });
@@ -43,11 +43,12 @@ const EditItem = ({onChange, navigation}) => {
       .child(uid)
       .child(id)
       .set({
-        category: category,
-        item: item,
+        category,
+        item,
         price: parseFloat(price * qtd),
         qtd: parseFloat(qtd),
         order: parseFloat(order),
+        singlePrice: price,
       });
 
     navigation.navigate('Home');

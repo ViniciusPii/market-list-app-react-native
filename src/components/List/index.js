@@ -17,6 +17,7 @@ import {
   LeftArea,
   RightArea,
   ButtonText,
+  CategoryArea,
 } from './styles';
 import {colors} from '../colors';
 import {Alert} from 'react-native';
@@ -86,7 +87,15 @@ const ListItem = ({data, navigation}) => {
         <Content>
           <Category category={data.category} />
           <ContentItemArea>
-            <ContentCategoryText>{data.category}</ContentCategoryText>
+            <CategoryArea>
+              <ContentCategoryText>{data.category}</ContentCategoryText>
+              <ContentCategoryText>
+                Un - R${' '}
+                {parseFloat(data.singlePrice)
+                  .toFixed(2)
+                  .replace('.', ',')}
+              </ContentCategoryText>
+            </CategoryArea>
             <ContentItem>
               <ContentText>{`${data.qtd}x - ${data.item}`}</ContentText>
               <ContentValue>

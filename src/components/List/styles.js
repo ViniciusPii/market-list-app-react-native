@@ -12,12 +12,11 @@ export const Content = styled.View`
   background: ${colors.white};
   width: 90%;
   flex-direction: row;
-  align-items: center;
   border-radius: 5px;
 `;
 
 export const Category = styled.View`
-  height: 80px;
+  height: 100%;
   width: 15px;
   background: ${props =>
     props.category === 'hortifruti'
@@ -36,36 +35,38 @@ export const Category = styled.View`
 `;
 
 export const ContentItemArea = styled.View`
+  padding: 10px;
   flex: 1;
+`;
+
+export const CategoryArea = styled.View`
+  flex-direction: row;
   justify-content: space-between;
-  padding-left: 15px;
+`;
+
+export const ContentCategoryText = styled.Text`
+  font-size: 20px;
+  font-weight: bold;
+  color: ${colors.lightBlack};
+  text-transform: capitalize;
+  margin-bottom: 15px;
 `;
 
 export const ContentItem = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 5px;
-`;
-
-export const ContentCategoryText = styled.Text`
-  font-size: 20px;
-  font-weight: bold;
-  margin: 5px 0 10px 0;
-  color: ${colors.lightBlack};
-  text-transform: capitalize;
 `;
 
 export const ContentText = styled.Text`
   font-size: 22px;
   color: ${colors.darkGray};
   flex: 1;
-  padding-right: 10px;
+  padding-right: 5px;
 `;
 
 export const ContentValue = styled.Text`
   font-size: 22px;
-  padding-right: 15px;
   color: ${colors.darkGray};
 `;
 

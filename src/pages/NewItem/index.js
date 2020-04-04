@@ -39,7 +39,6 @@ const NewItem = ({onChange, navigation}) => {
       .ref('lista')
       .child(uid)
       .push().key;
-
     firebase
       .database()
       .ref('order')
@@ -54,8 +53,9 @@ const NewItem = ({onChange, navigation}) => {
       .child(uid)
       .child(key)
       .set({
-        category: category,
-        item: item,
+        category,
+        item,
+        singlePrice: parseFloat(price),
         price: parseFloat(price * qtd),
         qtd: parseFloat(qtd),
         order: parseFloat(order),
@@ -66,7 +66,7 @@ const NewItem = ({onChange, navigation}) => {
       .ref('order')
       .child(uid)
       .set({
-        order: order,
+        order,
       });
 
     navigation.navigate('Home');

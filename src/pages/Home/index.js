@@ -29,6 +29,7 @@ const Home = ({navigation}) => {
             category: childItem.val().category,
             item: childItem.val().item,
             price: childItem.val().price,
+            singlePrice: childItem.val().singlePrice,
             qtd: childItem.val().qtd,
           };
 
