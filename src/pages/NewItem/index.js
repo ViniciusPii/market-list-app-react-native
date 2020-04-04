@@ -33,6 +33,21 @@ const NewItem = ({onChange, navigation}) => {
   });
 
   const handleSubmitAdd = () => {
+    if (!category || item === '' || price === '' || qtd === '') {
+      alert('Preencha todos os campos');
+      return;
+    }
+
+    if (price <= 0 || isNaN(price)) {
+      alert('Preço inexistente');
+      return;
+    }
+
+    if (qtd <= 0 || isNaN(qtd)) {
+      alert('Quantidade inexistente');
+      return;
+    }
+
     Keyboard.dismiss();
     let key = firebase
       .database()
